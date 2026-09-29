@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CrunchOne Digital Kickoff</title>
+<style>
+:root{--bg:#252525;--panel:#303030;--panel2:#383838;--text:#fff;--muted:#bbb;--line:#555;--orange:#f36b21}
+*{box-sizing:border-box} body{margin:0;background:#111;font-family:Arial,Helvetica,sans-serif;color:var(--text)}
+.app{max-width:1180px;margin:auto;background:var(--bg);min-height:760px}.screen{display:none;min-height:760px;padding:34px 48px 40px}.screen.active{display:block}
+.top{display:flex;justify-content:space-between;color:#c6c6c6;font-size:12px;font-weight:800;letter-spacing:.16em}.title{font-size:34px;font-weight:900;margin:28px 0 4px}.sub{color:var(--muted);margin:0 0 26px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+label{font-size:11px;font-weight:800;color:#ddd;letter-spacing:.08em}input,textarea{display:block;width:100%;margin-top:7px;padding:13px 14px;background:#1d1d1d;color:#fff;border:1px solid var(--line);border-radius:5px;font-size:16px}
+button{font:inherit;color:#fff;background:#343434;border:1px solid #666;border-radius:5px;padding:12px;cursor:pointer;min-height:45px}.choice.selected,.day.selected,.rate.selected,.commit.selected,.plan.selected{background:#54301d;border-color:var(--orange);box-shadow:inset 4px 0 var(--orange)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.next{background:var(--orange);border-color:var(--orange);font-weight:900;padding:12px 25px}.back{font-weight:800;padding:12px 25px}
+.card{background:var(--panel);border:1px solid #505050;border-radius:7px;padding:18px}.orangebar{border-left:5px solid var(--orange)}.big{font-size:25px;font-weight:900}.tiny{font-size:11px;color:var(--muted);font-weight:800}.recap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.recap .card{min-height:92px}.value{font-size:17px;font-weight:800;margin-top:9px}
+.cover{position:relative;background:linear-gradient(#353535,#2b2b2b);overflow:hidden}.cover .brand{font-weight:900;font-size:31px}.cover .fitness{font-size:15px;font-weight:800}.coverbox{margin-top:150px;border:2px solid #fff;display:inline-block;padding:8px 20px;font-size:18px;font-style:italic;font-weight:900}.kick{font-size:78px;line-height:.9;font-weight:1000;font-style:italic;margin-top:14px}.accent{position:absolute;right:50px;top:50px;color:var(--orange);font-size:54px;font-weight:900}.footerTag{position:absolute;bottom:38px;color:#aaa;font-size:11px;font-weight:800;letter-spacing:.14em}
+.prescription{display:grid;grid-template-columns:1fr 1fr;gap:13px}.rx{display:flex;justify-content:space-between;align-items:center;background:var(--panel);padding:17px;border-radius:6px;border-left:5px solid #777}.rx select{background:#1d1d1d;color:#fff;border:1px solid #666;padding:10px;border-radius:4px}
+.pricecards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.pricecards .card{min-height:230px}.price{font-size:28px;font-weight:900;margin:20px 0}.quote{font-size:20px;font-weight:800;font-style:italic;margin-top:24px}
+.pifrow{display:flex;justify-content:space-between;align-items:center;margin:10px 0;background:var(--panel);padding:17px 22px;border-radius:5px}.pifrow strong{font-size:20px}
+@media(max-width:720px){.screen{padding:24px 18px}.grid2,.grid3,.grid5,.recap,.prescription,.pricecards{grid-template-columns:1fr}.kick{font-size:58px}.app,.screen{min-height:auto}.cover{min-height:720px}}
+</style></head>
+<body><main class="app" id="app">
+
+<section class="screen cover active" data-page="0"><div class="brand">CRUNCH</div><div class="fitness">FITNESS</div><div class="accent">///</div><div class="coverbox">PERSONAL TRAINING</div><div class="kick">KICK<br>OFF</div><div class="footerTag">DIGITAL COACHING EXPERIENCE</div><div class="nav" style="margin-top:55px"><span></span><button class="next" data-next>START KICKOFF</button></div></section>
+
+<section class="screen" data-page="1"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>01 / 07</span></div><h1 class="title">LET’S GET STARTED</h1><p class="sub">A few basics before we build your plan.</p><div class="grid2">
+<label>MEMBER NAME<input id="name"></label><label>COACH<input id="coach" value="Kyle"></label><label>EMAIL<input id="email"></label><label>PHONE<input id="phone"></label><label>DATE<input id="date" type="date"></label></div><div class="nav"><span></span><button class="next" data-next>CONTINUE</button></div></section>
+
+<section class="screen" data-page="2"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>02 / 07</span></div><h1 class="title">WHAT DO YOU WANT TO CHANGE?</h1><p class="sub">Choose everything that matters. Then get specific.</p>
+<div class="grid3" id="goals"><button class="choice">LOSE BODY FAT</button><button class="choice">BUILD MUSCLE</button><button class="choice">GET STRONGER</button><button class="choice">IMPROVE HEALTH</button><button class="choice">MORE ENERGY</button><button class="choice">PERFORMANCE</button></div>
+<div class="grid2" style="margin-top:22px"><label>HOW MUCH WEIGHT WOULD YOU LIKE TO GAIN / LOSE?<input id="weightgoal"></label><label>AREAS YOU WANT TO FOCUS ON<input id="areas"></label><label>TIME FRAME<input id="timeframe"></label><label>CURRENT FITNESS LEVEL (1–10)<input id="fitness" type="number" min="1" max="10"></label></div><label style="display:block;margin-top:16px">WHAT WOULD SUCCESS LOOK LIKE?<textarea id="success" rows="2"></textarea></label><div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>NEXT</button></div></section>
+
+<section class="screen" data-page="3"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>03 / 07</span></div><h1 class="title">WHY NOW?</h1><p class="sub">The goal matters more when we understand what is behind it.</p><label>WHY IS THIS IMPORTANT TO YOU RIGHT NOW?<textarea id="why" rows="2"></textarea></label><label style="display:block;margin-top:16px">IF YOU ACHIEVE THIS, WHAT CHANGES IN YOUR LIFE?<textarea id="change" rows="2"></textarea></label>
+<p class="tiny" style="margin-top:20px">WHAT HAS MADE THIS HARD BEFORE?</p><div class="grid3" id="barriers"><button class="choice">CONSISTENCY</button><button class="choice">NUTRITION</button><button class="choice">TIME</button><button class="choice">MOTIVATION</button><button class="choice">ACCOUNTABILITY</button><button class="choice">KNOW-HOW</button></div>
+<p class="tiny" style="margin-top:20px">COMMITMENT TODAY</p><div class="grid5" id="commit"></div><div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>NEXT</button></div></section>
+
+<section class="screen" data-page="4"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>04 / 07</span></div><h1 class="title">WHAT CAN YOUR WEEK REALISTICALLY LOOK LIKE?</h1><p class="sub">Build the plan around real life—not a perfect week.</p><div class="grid2"><label>DAYS PER WEEK YOU CAN COMMIT<input id="dayscommit"></label><label>BEST DAYS / TIMES<input id="besttimes"></label><label>SUPPORT SYSTEM<input id="support"></label></div><p class="tiny" style="margin-top:20px">DAYS AVAILABLE</p><div class="grid5" id="days"><button class="day">M</button><button class="day">T</button><button class="day">W</button><button class="day">T</button><button class="day">F</button><button class="day">S</button><button class="day">S</button></div>
+<p class="tiny" style="margin-top:22px">QUICK SAFETY SCREEN</p><div id="safety"></div><div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>NEXT</button></div></section>
+
+<section class="screen" data-page="4.1"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>MEASUREMENTS</span></div><h1 class="title">LET’S GET YOUR STARTING POINT</h1><p class="sub">Record the member’s current measurements before the training assessment.</p><div class="grid3"><label>BODY FAT %<input id="bodyfat" type="number" min="0" max="100" step="0.1" placeholder="Example: 28.5"></label><label>HEIGHT<input id="height" placeholder="Example: 5 ft 8 in"></label><label>WEIGHT<input id="bodyweight" type="number" min="0" step="0.1" placeholder="Example: 185 lb"></label></div>
+<p class="tiny" style="margin-top:22px">GENDER</p>
+<div class="grid3" id="gender"><button class="choice">MALE</button><button class="choice">FEMALE</button><button class="choice">OTHER / PREFER NOT TO SAY</button></div><div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>NEXT</button></div></section>
+
+<section class="screen" data-page="4.2"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>TRAINING ASSESSMENT</span></div><div style="display:flex;min-height:600px;align-items:center;justify-content:center;text-align:center"><div style="max-width:760px"><div class="tiny" style="color:var(--orange);font-size:14px;letter-spacing:.18em">ASSESSMENT BREAK</div><h1 class="title" style="font-size:64px;font-style:italic;margin-top:14px">TIME TO TRAIN</h1><p class="sub" style="font-size:20px">Pause the digital Kickoff and take the member through your movement and training assessment.</p><div class="nav" style="margin-top:38px"><button class="back" data-back>BACK</button><button class="next" data-next>ASSESSMENT COMPLETE</button></div></div></div></section>
+<section class="screen" data-page="5"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>05 / 07</span></div><h1 class="title">LET’S RECAP</h1><p class="sub">Here is what you told me.</p><div class="recap" id="recap"></div><div class="quote">“Based on everything you told me, here’s what I would recommend.”</div><div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>NEXT</button></div></section>
+
+<section class="screen" data-page="6"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>06 / 07</span></div><h1 class="title">YOUR FITNESS PRESCRIPTION</h1><p class="sub">Your coaching plan is one part of the complete program.</p><div class="prescription">
+<div class="rx"><div><b>STRENGTH TRAINING</b><div class="tiny">Build muscle • improve strength</div></div><select id="strength"><option>2 DAYS / WK</option><option selected>3 DAYS / WK</option><option>4 DAYS / WK</option><option>5 DAYS / WK</option></select></div>
+<div class="rx"><div><b>NUTRITION</b><div class="tiny">Protein • calories • habits</div></div><select><option selected>DAILY</option></select></div>
+<div class="rx"><div><b>CARDIOVASCULAR</b><div class="tiny">Conditioning • heart health</div></div><select><option>2 DAYS / WK</option><option selected>3 DAYS / WK</option><option>4 DAYS / WK</option><option>5 DAYS / WK</option></select></div>
+<div class="rx"><div><b>FLEXIBILITY / MOBILITY</b><div class="tiny">Recovery • movement quality</div></div><select><option>2 DAYS / WK</option><option>3 DAYS / WK</option><option selected>4 DAYS / WK</option><option>5 DAYS / WK</option></select></div>
+<div class="rx orangebar"><div><b>COACHING</b><div class="tiny">Technique • progression • accountability</div></div><select id="coaching"><option value="1">1 DAY / WK</option><option value="2" selected>2 DAYS / WK</option><option value="3">3 DAYS / WK</option></select></div></div>
+<div class="nav"><button class="back" data-back>BACK</button><button class="next" data-next>SEE OPTIONS</button></div></section>
+
+<section class="screen" data-page="7"><div class="top"><span>CRUNCHONE / KICKOFF</span><span>07 / 07</span></div><h1 class="title">CHOOSE YOUR COACHING PLAN</h1><p class="sub">Match the level of coaching to the goal, timeline, and support you want.</p><div class="grid3" id="plans">
+<button class="plan" data-rate="1"><span class="tiny">FOUNDATION</span><div class="big">1× / WEEK</div><p>Technique + programming<br>Weekly accountability<br>Best for more independent members</p></button>
+<button class="plan" data-rate="2"><span class="tiny">RECOMMENDED</span><div class="big">2× / WEEK</div><p>More coaching + progression<br>Consistent accountability<br>Matches today’s prescription</p></button>
+<button class="plan" data-rate="3"><span class="tiny">ACCELERATED</span><div class="big">3× / WEEK</div><p>High-touch coaching<br>More supervised training<br>For maximum hands-on support</p></button></div><div class="nav"><button class="back" data-back>BACK</button><button class="next" id="pricingBtn">PRICING</button></div></section>
+
+<section class="screen" data-page="8"><div class="top"><span>CRUNCHONE / YOUR COACHING PLAN</span><span id="pricefreq"></span></div><h1 class="title" id="priceTitle"></h1><p class="sub">Compare the ways to structure the coaching frequency you selected.</p><div class="pricecards" id="pricecards"></div><div class="nav"><button class="back" data-back>BACK</button><button class="next" id="pifBtn">VIEW ALL PIF OPTIONS</button></div></section>
+
+<section class="screen" data-page="9"><div class="top"><span>CRUNCHONE / PAID IN FULL</span><span></span></div><h1 class="title">60-MIN PAID-IN-FULL OPTIONS</h1><p class="sub">Use the package size that best supports the member’s prescribed frequency and timeline.</p><div id="pif">
+<div class="pifrow"><b>5 SESSIONS</b><strong>$550</strong></div><div class="pifrow"><b>10 SESSIONS</b><strong>$1,080</strong></div><div class="pifrow"><b>20 SESSIONS</b><strong>$2,080</strong></div><div class="pifrow"><b>30 SESSIONS</b><strong>$3,060</strong></div><div class="pifrow"><b>50 SESSIONS</b><strong>$4,900</strong></div></div><p class="sub" style="margin-top:22px">Open the member recap email when you’re ready. You can use BACK at any time to adjust the recommendation before starting the next Kickoff.</p><div class="nav"><button class="back" data-back>BACK</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="back" id="newKickoff">NEW KICKOFF</button><button class="next" id="restart">EMAIL RECAP</button></div></div></section>
+
+</main><script>
+(()=>{let page=0,commitment="",rate=2;const screens=[...document.querySelectorAll(".screen")],$=id=>document.getElementById(id);
+function show(n){page=Math.max(0,Math.min(n,screens.length-1));screens.forEach((s,i)=>s.classList.toggle("active",i===page));if(screens[page].querySelector("#recap"))recap();
+if(screens[page].querySelector("#plans")){rate=+$("coaching").value;selectRate()}
+if(screens[page].querySelector("#pricecards"))pricing();window.scrollTo(0,0)}
+document.querySelectorAll("[data-next]").forEach(b=>b.onclick=()=>show(page+1));document.querySelectorAll("[data-back]").forEach(b=>b.onclick=()=>show(page-1));
+document.querySelectorAll(".choice,.day").forEach(b=>b.onclick=()=>b.classList.toggle("selected"));
+for(let i=1;i<=10;i++){let b=document.createElement("button");b.textContent=i;b.className="commit";b.onclick=()=>{commitment=i;document.querySelectorAll(".commit").forEach(x=>x.classList.toggle("selected",x===b))};$("commit").appendChild(b)}
+["Bone/joint issue aggravated by activity?","Doctor-recommended medication for BP/heart?","Chest pain brought on by activity?","Loss of consciousness / dizziness?"].forEach((q,i)=>{let d=document.createElement("div");d.className="card";d.style.margin="9px 0";d.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b>${q}</b><div><button class="safe">NO</button> <button class="safe">YES</button></div></div>`;d.querySelectorAll("button").forEach(b=>b.onclick=()=>{d.querySelectorAll("button").forEach(x=>x.classList.toggle("selected",x===b))});$("safety").appendChild(d)});
+function vals(sel){return [...document.querySelectorAll(sel+" .selected")].map(x=>x.textContent.trim()).join(" • ")}
+function recap(){let goal=vals("#goals");let items=[["STARTING POINT",`Fitness ${$("fitness").value||"—"}/10 • ${$("bodyweight").value||"—"} lb • ${$("bodyfat").value||"—"}% BF • ${$("height").value||"—"} • ${vals("#gender")||"—"}`],["GOAL",[goal,$("weightgoal").value].filter(Boolean).join(" • ")||"—"],["YOUR WHY",$("why").value||"—"],["COMMITMENT",(commitment||"—")+" / 10"],["TIME FRAME",$("timeframe").value||"—"],["SUPPORT",$("support").value||"—"],["AVAILABLE",$("dayscommit").value||vals("#days")||"—"],["BIGGEST BARRIERS",vals("#barriers")||"—"]];$("recap").innerHTML=items.map(x=>`<div class="card orangebar"><div class="tiny">${x[0]}</div><div class="value">${x[1]}</div></div>`).join("")}
+function selectRate(){document.querySelectorAll(".plan").forEach(x=>x.classList.toggle("selected",+x.dataset.rate===rate))}
+document.querySelectorAll(".plan").forEach(b=>b.onclick=()=>{rate=+b.dataset.rate;selectRate()});
+$("pricingBtn").onclick=()=>show(screens.findIndex(s=>s.querySelector("#pricecards")));
+const price={1:["$420 / MONTH","$231 / MONTH","FROM $550 PIF"],2:["$824 / MONTH","$453.20 / MONTH","FROM $1,080 PIF"],3:["$1,200 / MONTH","$660 / MONTH","FROM $2,080 PIF"]};
+function pricing(){let p=price[rate];$("pricefreq").textContent=rate+"× / WEEK";$("priceTitle").textContent=rate+"× / WEEK COACHING OPTIONS";$("pricecards").innerHTML=`<button class="card rate"><span class="tiny">60 MIN COACHING<br>EFT • 3-MONTH MINIMUM</span><div class="price">${p[0]}</div><p>Full 60-minute coached sessions focused on training, progression and accountability.</p></button><button class="card rate"><span class="tiny">30 MIN COACHING<br>EFT • 3-MONTH MINIMUM</span><div class="price">${p[1]}</div><p>A lower monthly option with focused 30-minute coached sessions.</p></button><button class="card rate" id="pifCard"><span class="tiny">PAID IN FULL<br>FLEXIBLE SESSION PACKS</span><div class="price">${p[2]}</div><p>Choose a session package up front and schedule sessions based on your plan.</p><div class="tiny">5 • 10 • 20 • 30 • 50 sessions</div></button>`;document.querySelectorAll(".rate").forEach(b=>b.onclick=()=>{document.querySelectorAll(".rate").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")});$("pifCard").ondblclick=()=>show(screens.findIndex(s=>s.querySelector("#pif")))}
+$("pifBtn").onclick=()=>show(screens.findIndex(s=>s.querySelector("#pif")));
+$("restart").onclick=()=>{
+  const memberName=$("name").value.trim()||"there";
+  const memberEmail=$("email").value.trim();
+  const coach=$("coach").value.trim()||"your Crunch coach";
+  const goal=vals("#goals");
+  const barriers=vals("#barriers");
+  const selectedPlan=document.querySelector(".rate.selected");
+  const selectedPlanText=selectedPlan ? selectedPlan.innerText.replace(/\n+/g," • ").trim() : "";
+  const p=price[rate];
+  const recommended = rate+"× per week";
+  const subject="Your CrunchOne Kickoff Recap & Training Plan";
+  const body=[
+    "Hi "+memberName+",",
+    "",
+    "Thank you for completing your CrunchOne Kickoff with me. Here’s a recap of what we discussed:",
+    "",
+    "YOUR GOAL",
+    [goal,$("weightgoal").value.trim()].filter(Boolean).join(" • ") || "—",
+    "",
+    "STARTING MEASUREMENTS",
+    "Height: "+($("height").value.trim()||"—"),
+    "Weight: "+($("bodyweight").value.trim()||"—")+" lb",
+    "Body Fat: "+($("bodyfat").value.trim()||"—")+"%",
+    "Gender: "+(vals("#gender")||"—"),
+    "",
+    "TIME FRAME",
+    $("timeframe").value.trim() || "—",
+    "",
+    "YOUR WHY",
+    $("why").value.trim() || "—",
+    "",
+    "COMMITMENT",
+    (commitment||"—")+" / 10",
+    "",
+    "BIGGEST BARRIERS",
+    barriers || "—",
+    "",
+    "WEEKLY AVAILABILITY",
+    $("dayscommit").value.trim() || vals("#days") || "—",
+    "",
+    "RECOMMENDED COACHING PLAN",
+    recommended,
+    "",
+    "60-minute option: "+p[0],
+    "30-minute option: "+p[1],
+    "Paid-in-full option: "+p[2],
+    selectedPlanText ? "" : "",
+    selectedPlanText ? "Selected option: "+selectedPlanText : "",
+    "",
+    "I’m excited to help you work toward your goals and build a plan you can stay consistent with.",
+    "",
+    "— "+coach,
+    "Crunch Fitness Personal Training"
+  ].filter((x,i,a)=>!(x==="" && i>0 && a[i-1]==="")).join("\n");
+  const mailto="mailto:"+encodeURIComponent(memberEmail)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  window.location.href=mailto;
+};
+$("newKickoff").onclick=()=>{if(confirm("Start a new Kickoff? This will clear the current member’s answers.")) location.reload();};
+})();
+</script></body></html>
