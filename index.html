@@ -67,10 +67,22 @@ button{font:inherit;color:#fff;background:#343434;border:1px solid #666;border-r
 <div class="pifrow"><b>5 SESSIONS</b><strong>$550</strong></div><div class="pifrow"><b>10 SESSIONS</b><strong>$1,080</strong></div><div class="pifrow"><b>20 SESSIONS</b><strong>$2,080</strong></div><div class="pifrow"><b>30 SESSIONS</b><strong>$3,060</strong></div><div class="pifrow"><b>50 SESSIONS</b><strong>$4,900</strong></div></div><p class="sub" style="margin-top:22px">Compare the paid-in-full options below. Use BACK to return to the monthly coaching options.</p><div class="nav"><button class="back" data-back>BACK</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="back" id="newKickoff">NEW KICKOFF</button><button class="next" id="restart">EMAIL RECAP</button></div></div></section>
 
 </main><script>
-(()=>{let page=0,commitment="",rate=2,concern="";const screens=[...document.querySelectorAll(".screen")],$=id=>document.getElementById(id);
+(()=>{let page=0,commitment="",rate=2,concern="";
+const demoMode=new URLSearchParams(window.location.search).get("demo")==="1";const screens=[...document.querySelectorAll(".screen")],$=id=>document.getElementById(id);
 function show(n){page=Math.max(0,Math.min(n,screens.length-1));screens.forEach((s,i)=>s.classList.toggle("active",i===page));if(screens[page].querySelector("#recap"))recap();
 if(screens[page].querySelector("#plans")){rate=+$("coaching").value;selectRate()}
 if(screens[page].querySelector("#recommendReasons"))buildRecommendation();if(screens[page].querySelector("#pricecards"))pricing();window.scrollTo(0,0)}
+if(demoMode){
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v};
+  const pick=(selector,texts)=>{document.querySelectorAll(selector).forEach(b=>{if(texts.some(t=>b.textContent.trim().toLowerCase().includes(t.toLowerCase())))b.classList.add("selected")})};
+  set("name","Jordan Sample");set("coach","Kyle");set("email","jordan.sample@example.com");set("phone","408-555-0142");
+  set("weightgoal","Lose 30 lb");set("areas","Core, legs, overall strength");set("timeframe","6 months");set("fitness","5");set("success","Feel stronger, leaner, and confident staying consistent.");
+  set("why","I want more energy, better health, and to feel confident again.");set("support","Partner and family");set("dayscommit","4");
+  set("bodyweight","215");set("bodyfat","32");set("height","5 ft 10 in");
+  pick("#goals .choice",["lose body fat","get stronger"]);pick("#barriers .choice",["consistency","accountability"]);pick("#days .day",["monday","tuesday","thursday","saturday"]);pick("#gender .choice",["male"]);
+  commitment=8;document.querySelectorAll(".commit").forEach(x=>x.classList.toggle("selected",x.textContent==="8"));
+  const banner=document.getElementById("demoBanner");if(banner)banner.style.display="block";
+}
 document.querySelectorAll("[data-next]").forEach(b=>b.onclick=()=>show(page+1));document.querySelectorAll("[data-back]").forEach(b=>b.onclick=()=>show(page-1));
 document.querySelectorAll(".choice,.day").forEach(b=>b.onclick=()=>b.classList.toggle("selected"));
 for(let i=1;i<=10;i++){let b=document.createElement("button");b.textContent=i;b.className="commit";b.onclick=()=>{commitment=i;document.querySelectorAll(".commit").forEach(x=>x.classList.toggle("selected",x===b))};$("commit").appendChild(b)}
